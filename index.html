@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeSoto Auto Concierge | Private Acquisition & Sales Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0b0d;
+      --bg-card: rgba(18, 20, 24, 0.95);
+      --border-metallic: rgba(200, 205, 215, 0.2);
+      --border-accent: #c0c5ce;
+      --text-main: #f0f2f5;
+      --text-muted: #8a919e;
+      --accent-silver: #d1d5db;
+      --accent-glow: rgba(255, 255, 255, 0.08);
+      --highlight: #e2e8f0;
+      --primary-btn: linear-gradient(135deg, #2b2e36 0%, #15171c 100%);
+      --silver-gradient: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 50%, #64748b 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(30, 35, 45, 0.7) 0%, transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(20, 22, 28, 0.8) 0%, transparent 40%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-metallic);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(10, 11, 13, 0.85);
+      z-index: 100;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-emblem {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent-silver);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      background: linear-gradient(145deg, #1f2228, #0e1013);
+      color: #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+    }
+
+    .logo-text h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--silver-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .logo-text p {
+      font-size: 0.7rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .contact-badge {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      border: 1px solid var(--border-metallic);
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-badge:hover {
+      color: #fff;
+      border-color: var(--accent-silver);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 70px 0 40px;
+      text-align: center;
+    }
+
+    .pill-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-metallic);
+      color: var(--accent-silver);
+      margin-bottom: 20px;
+    }
+
+    .hero h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      background: var(--silver-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 30px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Form Container */
+    .intake-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-metallic);
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 60px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    /* Multi-step Navigation */
+    .step-indicators {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 35px;
+      position: relative;
+    }
+
+    .step-indicators::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--border-metallic);
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+
+    .step-node {
+      position: relative;
+      z-index: 2;
+      background: #121418;
+      border: 1px solid var(--border-metallic);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+    }
+
+    .step-node.active {
+      border-color: #fff;
+      color: #fff;
+      background: #1f2229;
+      font-weight: 600;
+    }
+
+    .step-node.completed {
+      border-color: #64748b;
+      color: #cbd5e1;
+    }
+
+    /* Form Panels */
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 25px;
+    }
+
+    .service-selection {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-metallic);
+      padding: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .service-card.selected {
+      border-color: #fff;
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .service-card h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .service-card p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #cbd5e1;
+    }
+
+    input, select, textarea {
+      background: #0d0e11;
+      border: 1px solid var(--border-metallic);
+      border-radius: 6px;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-metallic);
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--border-metallic);
+      color: var(--text-muted);
+    }
+
+    .btn-secondary:hover {
+      border-color: #fff;
+      color: #fff;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      background: #cbd5e1;
+    }
+
+    /* Confirmation Box */
+    .confirmation-view {
+      text-align: center;
+      padding: 40px 10px;
+    }
+
+    .confirm-icon {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .summary-box {
+      background: #0d0e11;
+      border: 1px solid var(--border-metallic);
+      border-radius: 8px;
+      padding: 24px;
+      text-align: left;
+      margin: 25px auto;
+      max-width: 600px;
+      font-size: 0.9rem;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .summary-row:last-child {
+      border-bottom: none;
+    }
+
+    .summary-label {
+      color: var(--text-muted);
+    }
+
+    .summary-val {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-metallic);
+      padding: 40px 0;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .intake-card {
+        padding: 24px 16px;
+      }
+      .step-node span {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-container">
+      <a href="#" class="logo-badge">
+        <div class="logo-emblem">D</div>
+        <div class="logo-text">
+          <h1>DeSoto</h1>
+          <p>Auto Concierge</p>
+        </div>
+      </a>
+      <a href="mailto:CustomerSupport@DeSotoAC.com" class="contact-badge">
+        CustomerSupport@DeSotoAC.com
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="pill-tag">Colorado Private Automotive Desk</span>
+      <h2>Private Acquisition & Sales Representation</h2>
+      <p>Operating exclusively as your buyer or seller agent. Eliminating dealer markups, fake listings, and wasted hours across the Front Range and Mountain Corridors.</p>
+    </section>
+
+    <div class="intake-card" id="intake">
+      <div class="step-indicators">
+        <div class="step-node active" id="node-1">1. <span>Service Selection</span></div>
+        <div class="step-node" id="node-2">2. <span>Specifications</span></div>
+        <div class="step-node" id="node-3">3. <span>Budget & Timeline</span></div>
+        <div class="step-node" id="node-4">4. <span>Verification</span></div>
+      </div>
+
+      <form id="mandate-form">
+        <!-- Step 1 -->
+        <div class="form-step active" id="step-1">
+          <h3 class="section-title">Select Mandate Focus</h3>
+          <p class="section-desc">Choose the primary objective for your automotive representation.</p>
+          
+          <div class="service-selection">
+            <div class="service-card selected" onclick="selectService('sourcing', this)">
+              <h4>Private Vehicle Sourcing</h4>
+              <p>Acquiring off-market classics, collector models, or finding new car allocations at true market price with zero dealer markup.</p>
+            </div>
+            <div class="service-card" onclick="selectService('selling', this)">
+              <h4>Private Party Listing Management</h4>
+              <p>Full-service marketing, staging, vetting prospective buyers, and managing negotiations to maximize your sale return.</p>
+            </div>
+            <div class="service-card" onclick="selectService('service', this)">
+              <h4>Service & Repair Oversight</h4>
+              <p>Liaison with vetted specialty master mechanics, auditing repair estimates, and scheduling inspections.</p>
+            </div>
+          </div>
+          <input type="hidden" id="service_type" name="service_type" value="Private Vehicle Sourcing">
+
+          <div class="button-row">
+            <div></div>
+            <button type="button" class="btn btn-primary" onclick="goToStep(2)">Next: Specifications &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step" id="step-2">
+          <h3 class="section-title">Target Vehicle Specifications</h3>
+          <p class="section-desc">Provide details for the vehicle you wish to acquire, sell, or service.</p>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="year_make">Year / Make</label>
+              <input type="text" id="year_make" name="year_make" placeholder="e.g. 2023 Porsche or 1968 Ford" required>
+            </div>
+            <div class="form-group">
+              <label for="model_trim">Model / Trim Spec</label>
+              <input type="text" id="model_trim" name="model_trim" placeholder="e.g. 911 GT3 Touring or Mustang Fastback" required>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="trans_pref">Drivetrain / Transmission</label>
+              <select id="trans_pref" name="trans_pref">
+                <option value="Manual Only">Manual Only</option>
+                <option value="Automatic / Dual-Clutch">Automatic / Dual-Clutch</option>
+                <option value="No Strict Preference">No Strict Preference</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="color_spec">Color & Interior Preferences</label>
+              <input type="text" id="color_spec" name="color_spec" placeholder="Preferred combos or dealbreakers">
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="btn btn-secondary" onclick="goToStep(1)">&larr; Back</button>
+            <button type="button" class="btn btn-primary" onclick="goToStep(3)">Next: Financials &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step" id="step-3">
+          <h3 class="section-title">Financial Scope & Timeline</h3>
+          <p class="section-desc">Establishing target parameters for search or sales feasibility.</p>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="budget_tier">Target Valuation / Budget</label>
+              <select id="budget_tier" name="budget_tier">
+                <option value="Under $50,000">Under $50,000</option>
+                <option value="$50,000 – $100,000" selected>$50,000 – $100,000</option>
+                <option value="$100,000 – $200,000">$100,000 – $200,000</option>
+                <option value="$200,000+">$200,000+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="timeline">Execution Window</label>
+              <select id="timeline" name="timeline">
+                <option value="Immediate (1–2 weeks)">Immediate (1–2 weeks)</option>
+                <option value="30–60 Days" selected>30–60 Days</option>
+                <option value="Opportunistic / Patient">Opportunistic / Patient Search</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Particular Requirements / Condition Notes</label>
+            <textarea id="notes" name="notes" placeholder="Specify requirements regarding single-owner provenance, original paint, clean title history, or modifications..."></textarea>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="btn btn-secondary" onclick="goToStep(2)">&larr; Back</button>
+            <button type="button" class="btn btn-primary" onclick="goToStep(4)">Next: Contact Info &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="form-step" id="step-4">
+          <h3 class="section-title">Client Details & Verification</h3>
+          <p class="section-desc">Where should our desk deliver verified matches and documentation?</p>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="client_name">Full Name</label>
+              <input type="text" id="client_name" name="client_name" placeholder="First & Last Name" required>
+            </div>
+            <div class="form-group">
+              <label for="client_email">Email Address</label>
+              <input type="email" id="client_email" name="client_email" placeholder="name@domain.com" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label for="region">Colorado Region / Corridor</label>
+            <select id="region" name="region">
+              <option value="Denver Metro">Denver Metro</option>
+              <option value="Cherry Hills / Greenwood Village">Cherry Hills / Greenwood Village</option>
+              <option value="Boulder County">Boulder County</option>
+              <option value="Mountain Corridor (Vail / Aspen / Summit)">Mountain Corridor (Vail / Aspen / Summit)</option>
+              <option value="Other / Out of State">Other / Out of State</option>
+            </select>
+          </div>
+
+          <div class="button-row">
+            <button type="button" class="btn btn-secondary" onclick="goToStep(3)">&larr; Back</button>
+            <button type="submit" class="btn btn-primary">Transmit Mandate &rarr;</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Confirmation Screen -->
+      <div id="confirmation" style="display: none;" class="confirmation-view">
+        <div class="confirm-icon">✓</div>
+        <h3 class="section-title">Mandate Registered</h3>
+        <p class="section-desc">Your acquisition specifications have been formatted and logged into our desk.</p>
+        
+        <div class="summary-box" id="summary-content"></div>
+
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 20px;">
+          Direct Inquiries: <a href="mailto:CustomerSupport@DeSotoAC.com" style="color: #fff;">CustomerSupport@DeSotoAC.com</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 DeSoto Auto Concierge. Private Automotive Acquisition & Representation Desk.</p>
+      <p style="margin-top: 6px;">Contact: <a href="mailto:CustomerSupport@DeSotoAC.com">CustomerSupport@DeSotoAC.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    let currentStep = 1;
+
+    function selectService(type, element) {
+      document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
+      element.classList.add('selected');
+      const serviceInput = document.getElementById('service_type');
+      if (type === 'sourcing') serviceInput.value = 'Private Vehicle Sourcing';
+      if (type === 'selling') serviceInput.value = 'Private Party Listing Management';
+      if (type === 'service') serviceInput.value = 'Service & Repair Oversight';
+    }
+
+    function goToStep(step) {
+      document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.step-node').forEach((n, idx) => {
+        n.classList.remove('active');
+        if (idx + 1 < step) n.classList.add('completed');
+        else n.classList.remove('completed');
+      });
+
+      document.getElementById(`step-${step}`).classList.add('active');
+      document.getElementById(`node-${step}`).classList.add('active');
+      currentStep = step;
+    }
+
+    document.getElementById('mandate-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const service = document.getElementById('service_type').value;
+      const vehicle = `${document.getElementById('year_make').value} ${document.getElementById('model_trim').value}`;
+      const budget = document.getElementById('budget_tier').value;
+      const name = document.getElementById('client_name').value;
+      const email = document.getElementById('client_email').value;
+      const region = document.getElementById('region').value;
+
+      document.getElementById('summary-content').innerHTML = `
+        <div class="summary-row"><span class="summary-label">Client:</span><span class="summary-val">${name}</span></div>
+        <div class="summary-row"><span class="summary-label">Contact:</span><span class="summary-val">${email}</span></div>
+        <div class="summary-row"><span class="summary-label">Mandate Type:</span><span class="summary-val">${service}</span></div>
+        <div class="summary-row"><span class="summary-label">Target Vehicle:</span><span class="summary-val">${vehicle}</span></div>
+        <div class="summary-row"><span class="summary-label">Valuation / Budget:</span><span class="summary-val">${budget}</span></div>
+        <div class="summary-row"><span class="summary-label">Territory:</span><span class="summary-val">${region}</span></div>
+      `;
+
+      document.getElementById('mandate-form').style.display = 'none';
+      document.querySelector('.step-indicators').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
